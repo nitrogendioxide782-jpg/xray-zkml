@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# virtual env
+venv/
+
+# model weights (太大)
+*.pth
+
+# EZKL artifacts
+*.srs
+*.key
+*.compiled
+*.data
+
+# runtime files
+temp.png
+*.npy
+*.json
+
+# dataset
+chest_xray/
