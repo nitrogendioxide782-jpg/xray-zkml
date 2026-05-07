@@ -80,29 +80,34 @@ def login_page():
 
 def run_pipeline(image_path):
     try:
+        st.write("STEP 1")
+
         load_image = get_image_loader()
+        st.write("STEP 2 OK")
+
+        st.write("STEP 3: loading model")
         XRayModel = get_model()
-        generate_report = get_report_generator()
-        build_fhir_report = get_fhir_builder()
-        zkml = get_zkml()
+        st.write("STEP 3 DONE")
 
+        st.write("STEP 4: image loading")
         image_tensor = load_image(image_path)
+        st.write("STEP 4 DONE")
 
-        model = XRayModel
-        model_output = model.predict(image_tensor)
+        st.write("STEP 5: inference start")
+        model_output = XRayModel.predict(image_tensor)
+        st.write("STEP 5 DONE")
 
+        st.write("STEP 6: report")
+        generate_report = get_report_generator()
         report = generate_report(model_output)
+        st.write("STEP 6 DONE")
 
-        zk_result = "SKIPPED (debug mode)"
-
+        st.write("STEP 7: fhir")
+        build_fhir_report = get_fhir_builder()
         fhir = build_fhir_report(report, patient_id="P001")
+        st.write("STEP 7 DONE")
 
-        return {
-            "ai": report,
-            "zkml": zk_result,
-            "fhir": fhir
-        }
-
+        return {"ai": report, "fhir": fhir}
     except Exception as e:
         return {"error": str(e)}
 
