@@ -1,6 +1,7 @@
 import streamlit as st
 import threading
-
+st.write("UI OK")
+st.stop()
 from zone1_ai_fhir import load_image
 from zone2_ai_fhir import XRayModel
 from zone3_ai_fhir import generate_report
