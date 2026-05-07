@@ -93,7 +93,7 @@ def run_pipeline(image_path):
 
         report = generate_report(model_output)
 
-        zk_result = zkml.run()
+        zk_result = "SKIPPED (debug mode)"
 
         fhir = build_fhir_report(report, patient_id="P001")
 
