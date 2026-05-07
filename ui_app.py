@@ -123,23 +123,20 @@ st.sidebar.success(f"Role: {st.session_state.role}")
 # -------------------------
 # Upload section
 # -------------------------
-uploaded_file = st.file_uploader(
-    "📤 Upload Chest X-ray",
-    type=["png", "jpg", "jpeg"]
-)
-
 if uploaded_file:
-    st.image(uploaded_file, caption="Input X-ray", width=300)
 
-    temp_path = os.path.join(tempfile.gettempdir(), "xray.png")
+    st.image(uploaded_file, width=300)
 
-    with open(temp_path, "wb") as f:
-        f.write(uploaded_file.read())
+    if st.button("🚀 Run Pipeline"):
 
-    if st.button("🚀 Run Verifiable AI Pipeline"):
-        with st.spinner("Running AI + ZK verification..."):
-            st.session_state.result = run_pipeline(temp_path)
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmp:
+            tmp.write(uploaded_file.read())
+            path = tmp.name
 
+        with st.spinner("Running AI pipeline..."):
+            result = run_pipeline(path)
+
+        st.session_state.result = result
         st.rerun()
 
 # -------------------------
