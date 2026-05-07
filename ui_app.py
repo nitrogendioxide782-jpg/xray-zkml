@@ -1,4 +1,3 @@
 import streamlit as st
 
-st.write("UI START OK")
-st.stop()
+st.title("TEST OK")
