@@ -9,7 +9,8 @@ from zone3_ai_fhir import generate_report
 from zone4_ai_fhir import build_fhir_report
 from zone2_5_zkml import ZKMLVerifier
 
-
+if "role" not in st.session_state:
+    st.session_state.role = "guest"
 # -------------------------
 # PAGE CONFIG
 # -------------------------
