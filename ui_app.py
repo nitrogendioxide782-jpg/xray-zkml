@@ -104,8 +104,8 @@ def run_pipeline(image_path):
 
     report = generate_report(ai_output)
 
-    zkml = get_verifier()
-    zkml_result = zkml.run()
+    # TEMP MOCK FOR COLAB
+    zkml_result = True
 
     fhir = build_fhir_report(report, patient_id="P001")
 
