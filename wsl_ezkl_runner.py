@@ -2,9 +2,9 @@
 # 🔥 FINAL WINDOWS CP950 FIX
 # 修正 UnicodeDecodeError（ezkl 的 UTF-8 emoji / symbols）
 
-import subprocess
+import os
 
-BASE = "/mnt/c/Users/liugu/xray-zkml"
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 
 def run_ezkl(cmd: str):
