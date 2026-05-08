@@ -10,14 +10,14 @@ venv/
 
 # EZKL artifacts
 *.srs
-*.key
+
 *.compiled
 *.data
 
 # runtime files
 temp.png
 *.npy
-*.json
+
 
 # dataset
 chest_xray/
